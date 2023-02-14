@@ -3,13 +3,23 @@
   import ToDo from "./components/ToDo.vue";
 </script>
 
+<script>
+  export default {
+    methods: {
+      onDataCollection (data) {
+        this.text = data.text
+      }
+    }
+  }
+</script>
+
 <template>
 
-  <InputComponent />
+  <InputComponent :onDataCollection="onDataCollection"/>
 
-  <ul id="todo" class="todo">
+  <ul id="todo" class="todo" >
 
-    <ToDo />
+    <ToDo :text="text" :id="1" completed="true"/>
 <!--      v-for="item in items"
       :item="item"
       :title="item.title"
