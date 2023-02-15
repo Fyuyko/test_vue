@@ -2,13 +2,13 @@
   export default {
     props: ["title", "id", "completed", "onDeleteItem", "onChecked"],
 
-    data() {
+    /*data() {
       return {
         id: this.id,
         title: this.title,
         completed: this.completed,
       }
-    },
+    },*/
 
     methods: {
       completedCheck(data) {
