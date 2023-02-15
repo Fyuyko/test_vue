@@ -1,16 +1,32 @@
 <script>
   export default {
-    props: ["text", "id", "completed"],
+    props: ["title", "id", "completed", "onDeleteItem", "onChecked"],
 
     data() {
       return {
-        name: this.text
+        id: this.id,
+        title: this.title,
+        completed: this.completed,
       }
     },
 
     methods: {
       completedCheck(data) {
         return data ? "checked" : "";
+      },
+
+      deleteItem() {
+        this.onDeleteItem({
+          idDel: this.id,
+        })
+      },
+
+      checked(checkboxItem) {
+        if (checkboxItem.checked) {
+          this.onChecked({
+            idCheck: this.id,
+          })
+        }
       }
     }
 
@@ -21,10 +37,10 @@
 
   <li class="todo__item show" :class="completedCheck(this.completed)">
     <div class="checkbox-wrapper">
-      <input :id="this.id" type="checkbox" class="checkbox" :checked="completedCheck()">
-      <label for="checkbox1">{{ name }}</label>
+      <input :id="'checkbox' + this.id" type="checkbox" class="checkbox" :checked="this.completed" @change="checked(this)">
+      <label :for="'checkbox' + this.id">{{this.title}}</label>
     </div>
-    <button class="todo__item-remov" :id="this.id">X</button>
+    <button class="todo__item-remov" :id="this.id" @click="deleteItem()">X</button>
   </li>
 
 </template>
