@@ -15,10 +15,8 @@ a,
   transition: 0.4s;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+a:hover {
+  background-color: hsla(160, 100%, 37%, 0.2);
 }
 
 @media (min-width: 1024px) {
@@ -52,7 +50,8 @@ body {
 }
 
 body .container {
-  width: 86.25%;
+  max-width: 400px;
+  height: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -156,13 +155,13 @@ body .container {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  background-color: #f2f2f2;
-  /*--------- добавление todo ----------*/
-  /*--------сами todo ---------*/
+  width: 100%;
 }
 
 .main .main__inner {
-  padding-top: 35px;
+  background-color: #f2f2f2;
+  padding: 30px;
+  height: 100%;
 }
 
 .main .main__header {
@@ -254,138 +253,6 @@ body .container {
   transform: rotateX(180deg);
 }
 
-.main .add-todo {
-  background-color: #fff;
-  height: 38px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 10px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.main .add-todo .add-todo__import {
-  outline: none;
-  border: none;
-  padding: 0 0 0 16px;
-  width: calc(100% - 51px);
-}
-
-.main .add-todo .add-todo__import::-webkit-input-placeholder {
-  color: #bac2cd;
-  font-family: Spartan;
-}
-
-.main .add-todo .add-todo__import::-moz-placeholder {
-  color: #bac2cd;
-  font-family: Spartan;
-}
-
-.main .add-todo .add-todo__import:-ms-input-placeholder {
-  color: #bac2cd;
-  font-family: Spartan;
-}
-
-.main .add-todo .add-todo__import::-ms-input-placeholder {
-  color: #bac2cd;
-  font-family: Spartan;
-}
-
-.main .add-todo .add-todo__import::placeholder {
-  color: #bac2cd;
-  font-family: Spartan;
-}
-
-.main .add-todo .add-todo__button {
-  border: none;
-  outline: none;
-  background-color: #55b8ff;
-  color: #fff;
-  width: 32px;
-  height: 32px;
-}
-
-.main .add-todo .add-todo__button img {
-  position: relative;
-  top: 1px;
-  left: 1px;
-}
-
-.main .todo {
-  font-family: NotoSans;
-  font-size: 12px;
-  list-style: none;
-  padding: 0;
-}
-
-.main .todo .todo__item {
-  background-color: #fff;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  padding: 10px;
-  display: none;
-}
-
-.main .todo .todo__item.show {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.main .todo .todo__item.checked {
-  text-decoration: line-through;
-}
-
-.main .todo .todo__item .checkbox {
-  margin-right: 10px;
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-}
-
-.main .todo .todo__item .checkbox + label {
-  position: relative;
-  vertical-align: middle;
-  padding: 0 0 0 30px;
-  cursor: pointer;
-}
-
-.main .todo .todo__item .checkbox + label:before {
-  content: "";
-  position: absolute;
-  top: 3px;
-  left: 0;
-  width: 9px;
-  height: 9px;
-  border: 2px solid #bfc6d0;
-}
-
-.main .todo .todo__item .checkbox + label:after {
-  content: "";
-  position: absolute;
-}
-
-.main .todo .todo__item .checkbox:checked + label:after {
-  position: absolute;
-  top: 7px;
-  left: 4px;
-  border-radius: 2px;
-  background: #55b8ff;
-  height: 5px;
-  width: 5px;
-}
-
-.main .todo .todo__item .todo__item-remov {
-  border: none;
-  outline: none;
-  background-color: #fff;
-}
 
 @media (min-width: 1024px) {
   .container {
