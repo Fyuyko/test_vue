@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import TodoSortItemComponent from "./TodoSortItemComponent.vue";
+import TodoSortItemComponent from "./TodoSortCompletedItemComponent.vue";
 
 export default {
   name: "TodoSortComponent",

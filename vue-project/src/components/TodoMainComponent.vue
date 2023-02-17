@@ -6,6 +6,7 @@
   <LoadingComponent v-if="!this.isLoaded"/>
   <div class="empty-component" v-if="this.isLoaded && data.length === 0">Задачи отсутствуют</div>
 
+
 </template>
 
 <script>
@@ -13,7 +14,7 @@ import {request} from "../utils/getData.js";
 import TodoInputComponent from "./TodoInputComponent.vue";
 import TodoListComponent from "./TodoListComponent.vue";
 import LoadingComponent from "./LoadingComponent.vue";
-import TodoSortComponent from "./TodoSortComponent.vue";
+import TodoSortComponent from "./sortCompleted/TodoSortCompletedComponent.vue";
 
 
 export default {
