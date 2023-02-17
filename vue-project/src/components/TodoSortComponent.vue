@@ -4,7 +4,7 @@
     <div class="sort__header">
       Все элементы
     </div>
-    <ul class="sort__list open">
+    <ul class="sort__list">
 
       <li class="sort__list-item" v-for="sortItem in this.sortList" >
         <TodoSortItemComponent :item="sortItem" :onCompleted="this.onCompleted"/>
@@ -57,6 +57,7 @@ export default {
 
   .sort__header {
     padding-bottom: 10px;
+    cursor: pointer;
   }
 
   .sort__list {
@@ -72,11 +73,13 @@ export default {
     transition: max-height linear .3s;
     overflow: hidden;
 
+    pointer-events: none;
     padding: 0;
   }
-  .sort__list.open {
+  .sort:hover .sort__list {
     max-height: 500px;
     box-shadow: 0 5px 5px 4px rgb(0 0 0 / 10%);
+    pointer-events: all;
   }
 
   .sort__list-item {
