@@ -10,19 +10,22 @@
 
 <script>
   export default {
-    props: ["title", "id", "completed", "checkedTodo", "deletedTodo"],
+    props: ["title", "id", "completed", "onChecked", "onDeleted"],
 
     methods: {
 
       deleteItem() {
-        this.deletedTodo(this.id)
+        this.onDeleted(this.id)
       },
 
       checkedItem(data) {
         if (data) {
-          this.checkedTodo(this.id)
+          this.onChecked({
+            id: this.id,
+            checked: this.completed,
+          })
         }
-      }
+      },
 
     },
 
@@ -31,11 +34,20 @@
 
 <style scoped>
 
+  .checkbox-wrapper {
+    flex: 1;
+  }
+
   .checkbox {
     margin-right: 10px;
     position: absolute;
     z-index: -1;
     opacity: 0;
+  }
+
+  label {
+    display: inline-block;
+    width: 100%;
   }
 
   .checkbox + label {
@@ -78,6 +90,7 @@
     border: none;
     outline: none;
     background-color: #fff;
+    cursor: pointer;
   }
 
 </style>

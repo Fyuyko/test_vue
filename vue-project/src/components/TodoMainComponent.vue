@@ -1,7 +1,8 @@
 <template>
 
+  <TodoSortComponent :onCompleted="completeTodo"/>
   <TodoInputComponent :onCreate="createTodo"/>
-  <TodoListComponent :onChecked="checkedTodo" :onDeleted="deleteTodo" :todoData="data"/>
+  <TodoListComponent :onChecked="checkedTodo" :onDeleted="deleteTodo" :todoData="sortData" />
   <LoadingComponent v-if="!this.isLoaded"/>
   <div class="empty-component" v-if="this.isLoaded && data.length === 0">Задачи отсутствуют</div>
 
@@ -12,17 +13,19 @@ import {request} from "../utils/getData.js";
 import TodoInputComponent from "./TodoInputComponent.vue";
 import TodoListComponent from "./TodoListComponent.vue";
 import LoadingComponent from "./LoadingComponent.vue";
+import TodoSortComponent from "./TodoSortComponent.vue";
 
 
 export default {
   name: "TodoMainComponent",
 
-  components: {LoadingComponent, TodoInputComponent, TodoListComponent},
+  components: {TodoSortComponent, LoadingComponent, TodoInputComponent, TodoListComponent},
 
   data() {
     return {
       data: [],
       isLoaded: false,
+      completed: "all"
     }
   },
 
@@ -40,7 +43,7 @@ export default {
     createTodo(data) {
       let obj = {
         title: data,
-        isCompleted: false,
+        completed: false,
         id: Math.floor(Math.random() * (1000 - 5 + 1)) + 5,
       };
       this.data.push(obj);
@@ -48,7 +51,7 @@ export default {
 
     checkedTodo(data) {
       this.data.forEach(item => {
-        if (item.id === data) {
+        if (item.id === data.id) {
           item.completed = !item.completed;
         }
       })
@@ -61,7 +64,34 @@ export default {
         }
       });
     },
+
+    completeTodo(data) {
+      this.completed = data;
+    }
   },
+
+  computed: {
+
+    sortData() {
+
+      switch (this.completed) {
+        case "all":
+          return this.data;
+          break;
+        case "completed":
+          return this.data.filter(item => item.completed)
+          break;
+        case "uncompleted":
+          return this.data.filter(item => !item.completed)
+          break;
+        default:
+          return this.data;
+          break;
+      }
+
+    }
+
+  }
 
 }
 </script>
