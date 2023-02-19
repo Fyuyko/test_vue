@@ -12,8 +12,10 @@
 
     methods: {
       dataReceive() {
-        this.onCreate(this.value)
-        this.value = "";
+        if (this.value.split(' ').join('').length > 0) {
+          this.onCreate(this.value)
+          this.value = "";
+        }
       }
     }
   }
