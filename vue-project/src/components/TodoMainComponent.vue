@@ -15,8 +15,8 @@
 <script>
 import {request} from "../utils/getData.js";
 import TodoInputComponent from "./TodoInputComponent.vue";
-import TodoListComponent from "./TodoListComponent.vue";
-import LoadingComponent from "./LoadingComponent.vue";
+import TodoListComponent from "./todoComponents/TodoListComponent.vue";
+import LoadingComponent from "./companionElement/LoadingComponent.vue";
 import TodoSortComponent from "./sortCompleted/TodoSortCompletedComponent.vue";
 import TodoSortAlphComponent from "./sortAlphabet/TodoSortAlphComponent.vue";
 import TodoStatisticComponent from "./statistic/TodoStatisticComponent.vue";
