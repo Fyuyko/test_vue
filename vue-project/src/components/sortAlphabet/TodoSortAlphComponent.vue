@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import TodoSortAlphItemComponent from "./todoSortAlphItemComponent.vue";
+import TodoSortAlphItemComponent from "./TodoSortAlphItemComponent.vue";
 
 export default {
   name: "todoSortAlphComponent",

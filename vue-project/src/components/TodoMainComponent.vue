@@ -6,6 +6,9 @@
   <TodoListComponent :onChecked="checkedTodo" :onDeleted="deleteTodo" :todoData="alphSortData" />
   <LoadingComponent v-if="!this.isLoaded"/>
   <div class="empty-component" v-if="this.isLoaded && data.length === 0">Задачи отсутствуют</div>
+  <footer v-if="data.length !== 0">
+    <TodoStatisticComponent :data="alphSortData"/>
+  </footer>
 
 </template>
 
@@ -15,13 +18,22 @@ import TodoInputComponent from "./TodoInputComponent.vue";
 import TodoListComponent from "./TodoListComponent.vue";
 import LoadingComponent from "./LoadingComponent.vue";
 import TodoSortComponent from "./sortCompleted/TodoSortCompletedComponent.vue";
-import TodoSortAlphComponent from "./sortAlphabet/todoSortAlphComponent.vue";
+import TodoSortAlphComponent from "./sortAlphabet/TodoSortAlphComponent.vue";
+import TodoStatisticComponent from "./statistic/TodoStatisticComponent.vue";
+
 
 
 export default {
   name: "TodoMainComponent",
 
-  components: {TodoSortAlphComponent, TodoSortComponent, LoadingComponent, TodoInputComponent, TodoListComponent},
+  components: {
+    TodoStatisticComponent,
+    TodoSortAlphComponent,
+    TodoSortComponent,
+    LoadingComponent,
+    TodoInputComponent,
+    TodoListComponent
+  },
 
   data() {
     return {
@@ -79,7 +91,7 @@ export default {
 
   computed: {
 
-    sortData() {
+    completesortData() {
 
       switch (this.completed) {
         case "all":
@@ -102,17 +114,17 @@ export default {
 
       switch (this.isAlphSort) {
         case false:
-          return this.sortData;
+          return this.completesortData;
         case true:
-          return this.sortData.sort((x, y) => {
+          return this.completesortData.sort((x, y) => {
             return x.title.localeCompare(y.title)
           });
         default:
-          return this.sortData;
+          return this.completesortData;
           break;
       }
 
-    }
+    },
 
   }
 
@@ -121,9 +133,15 @@ export default {
 
 <style scoped>
 
-
   .empty-component {
     width: fit-content;
     margin: 0 auto;
+  }
+
+  footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #55b8ff;
+    color: white;
   }
 </style>
