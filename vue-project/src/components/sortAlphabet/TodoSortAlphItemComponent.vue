@@ -1,7 +1,7 @@
 <template>
   <div class="sort-alph">
-    <input id="checkbox-alph" type="checkbox" class="checkbox-alph" v-model="checked" @change="sort(this)">
-    <label for="checkbox-alph">{{checked ? "Отсортровано по алфавиту" : "Отсортировать по алфавиту"}}</label>
+    <button id="checkbox-alph" :disabled="this.sorting" @click.stop="sort(this)">click</button>
+    <label for="checkbox-alph">{{sorting ? "Отсортровано по алфавиту" : "Отсортировать по алфавиту"}}</label>
   </div>
 </template>
 
@@ -13,13 +13,14 @@ export default {
 
   data() {
     return {
-      checked: false,
+      sorting: false,
     }
   },
 
   methods: {
-    sort(data) {
-      this.onSortAlphTodo(data.checked);
+    sort(button) {
+      this.sorting = !this.sorting;
+      this.onSortAlphTodo(button.sorting);
     }
   }
 
