@@ -1,11 +1,11 @@
 <template>
 
+  <todoSortAlphComponent :onSortAlphTodo="sortAlphTodo"/>
   <TodoSortComponent :onCompleted="completeTodo"/>
   <TodoInputComponent :onCreate="createTodo"/>
-  <TodoListComponent :onChecked="checkedTodo" :onDeleted="deleteTodo" :todoData="sortData" />
+  <TodoListComponent :onChecked="checkedTodo" :onDeleted="deleteTodo" :todoData="alphSortData" />
   <LoadingComponent v-if="!this.isLoaded"/>
   <div class="empty-component" v-if="this.isLoaded && data.length === 0">Задачи отсутствуют</div>
-
 
 </template>
 
@@ -15,18 +15,20 @@ import TodoInputComponent from "./TodoInputComponent.vue";
 import TodoListComponent from "./TodoListComponent.vue";
 import LoadingComponent from "./LoadingComponent.vue";
 import TodoSortComponent from "./sortCompleted/TodoSortCompletedComponent.vue";
+import TodoSortAlphComponent from "./sortAlphabet/todoSortAlphComponent.vue";
 
 
 export default {
   name: "TodoMainComponent",
 
-  components: {TodoSortComponent, LoadingComponent, TodoInputComponent, TodoListComponent},
+  components: {TodoSortAlphComponent, TodoSortComponent, LoadingComponent, TodoInputComponent, TodoListComponent},
 
   data() {
     return {
       data: [],
       isLoaded: false,
-      completed: "all"
+      completed: "all",
+      isAlphSort: false,
     }
   },
 
@@ -68,7 +70,11 @@ export default {
 
     completeTodo(data) {
       this.completed = data;
-    }
+    },
+
+    sortAlphTodo(data) {
+      this.isAlphSort = data;
+    },
   },
 
   computed: {
@@ -87,6 +93,22 @@ export default {
           break;
         default:
           return this.data;
+          break;
+      }
+
+    },
+
+    alphSortData() {
+
+      switch (this.isAlphSort) {
+        case false:
+          return this.sortData;
+        case true:
+          return this.sortData.sort((x, y) => {
+            return x.title.localeCompare(y.title)
+          });
+        default:
+          return this.sortData;
           break;
       }
 
